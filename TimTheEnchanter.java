@@ -1,8 +1,8 @@
 /**
- * Write a description of class TimTheEnchanter here.
+ * TimTheEnchanter- communicates information between the other classes and gameRunner.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Priya K
+ * @version 050618
  */
 public class TimTheEnchanter
 {
