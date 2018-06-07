@@ -913,30 +913,38 @@ public class GameRunner extends Application
         Scene pop = new Scene(g3);
         Stage popup = new Stage();
         
-        
-        
+        // set the scene and title
         popup.setScene(pop);
-        popup.setTitle("Obstacle");
+        popup.setTitle("Obstacle");        
         
-        
-        
+        // new VBox and HBox
         VBox vb2 = new VBox();
         HBox hb = new HBox();
         
+        // random number 0 or 1
         double rand = Math.random() * 2;
         String s = "";
         
+        //if random is 0 or 1
         if(rand < 1)
             s = "Ack! ";
         else
             s = "Oh No! ";
         
+        // obstacle message to display
         Text obstacle = new Text(s + message);
+        // text to display if not enough materials
         Text nope = new Text("Sorry, you don't have the weapons that can fight this one.");
+        
+        // buttons to counter if weapon is available
         Button counterB1 = new Button(" Use Weapon ");
         Button counterB2 = new Button(" Don't Use Weapon ");
+        
         Button ok = new Button(" Ok ");
+        
+        // number of certain weapon
         int number = 0;
+        // sets number to specific weapon amount the player has
         if (weapon.equals("bow and arrow"))
             number = p.getBowAndArrow();
         else
@@ -955,15 +963,19 @@ public class GameRunner extends Application
                             if (weapon.equals("fire-proof shield"))
                                 number = p.getFireProofShield();
         
+        // if no weapons of right type else if enough weapons
         if (number == 0)
             vb2.getChildren().addAll(obstacle, nope, ok);
         else
             vb2.getChildren().addAll(obstacle, counterB1, counterB2);
+            
+        // sizing
         vb2.setPrefWidth(windowS / 4);
         vb2.setPrefHeight(windowS / 4);
-        
+        // formatting
         vb2.setAlignment(Pos.CENTER);
         
+        // add VBox to the window
         g3.getChildren().add(vb2);
         
         
@@ -972,8 +984,9 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
-                // do the first option
+                // String to hold if player Won Or Lost
                 wol = tim.fightObstacle(p, true);
+                // subtract corresponding weapon
                 if (weapon.equals("bow and arrow"))
                     p.subtractBowAndArrow(1);
                 else
@@ -991,6 +1004,7 @@ public class GameRunner extends Application
                                 else
                                     if (weapon.equals("fire-proof shield"))
                                         p.subtractFireProofShield(1);
+                // close and show new popup
                 popup.close();
                 winOrLose(theStage, wol);
                 
@@ -999,13 +1013,15 @@ public class GameRunner extends Application
             }
         });
         
+        // if second button is pressed
         counterB2.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
-                // do the second option
+                // get string from tim
                 wol = tim.fightObstacle(p, false);
                 popup.close();
+                // show popup
                 winOrLose(theStage, wol);
                 
                 theStage.show();
@@ -1017,16 +1033,16 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
-                // do the second option
+                // get string from tim
                 wol = tim.fightObstacle(p, false);
                 popup.close();
+                // show popup
                 winOrLose(theStage, wol);
                 
                 theStage.show();
                 theStage.toFront();
             }
         });
-        
         
         popup.show();
     }
@@ -1038,16 +1054,31 @@ public class GameRunner extends Application
         Stage s = new Stage();
         Scene results = new Scene(g);
         
+        // set the scene and title
         s.setScene(results);
         s.setTitle("Results");
         
+        // new VBox to hold
         VBox vB = new VBox(20);
         
+        // title, message, and close button on window
         Label title = new Label("RESULTS:");
         Text msg = new Text(wol);
+        Button close = new Button("Close");
+        // add all to VBox
+        vB.getChildren().addAll(title, msg, close);
         
-        vB.getChildren().addAll(title, msg);
+        // if close is pressed
+        close.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                // close window
+                s.close();
+            }
+        });
         
+        // add all to window
         g.getChildren().add(vB);
         
         s.showAndWait();
