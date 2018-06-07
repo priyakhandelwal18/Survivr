@@ -73,7 +73,7 @@ public class GameRunner extends Application
         launch(args);
     }
     
-    
+    //show start menu
     @Override
     public void start(Stage theStage) 
     {
@@ -161,6 +161,7 @@ public class GameRunner extends Application
         theStage.show();
     }
     
+    // show the player choosing window
     private static void choosePlayer(Stage theStage)
     {
         // make the standard 3 for a new window
@@ -323,6 +324,7 @@ public class GameRunner extends Application
         popup.show();
     }
     
+    // show the main scene of the game
     private static void startGame(Stage theStage)
     {
         // Close the menu window
@@ -699,6 +701,7 @@ public class GameRunner extends Application
         game.show();
     }
     
+    // check if obstacle or supply at player position
     private static void checkForStuff(Stage theStage, Player p)
     {
         // if the player is at an obstacle
@@ -742,6 +745,7 @@ public class GameRunner extends Application
         }
     }
     
+    //show the instructions page
     private static void showInstructions(Stage theStage)
     {
         // close the menu
@@ -845,6 +849,7 @@ public class GameRunner extends Application
         instStage.show();
     }
     
+    // show the credits scene
     private static void showCredits(Stage theStage)
     {
         theStage.close();
@@ -906,6 +911,7 @@ public class GameRunner extends Application
         credStage.show();
     }
     
+    // show when palyer is at obstacle
     private static void atObstacle(Stage theStage, String message, String weapon)
     {
         // make the standard 3 for a new window
@@ -1047,6 +1053,7 @@ public class GameRunner extends Application
         popup.show();
     }
     
+    // show if player won or lost obstacle
     private static void winOrLose(Stage theStage, String status)
     {
         // make the standard 3 for a new window
@@ -1084,20 +1091,19 @@ public class GameRunner extends Application
         s.showAndWait();
     }
     
+    // show the window if player is at a supply
     private static void atSupply(Stage theStage, String msg, String sup)
     {
         // make the standard 3 for a new window
         Group g3 = new Group();
         Scene pop = new Scene(g3);
-        Stage popup = new Stage();
+        Stage popup = new Stage(); // line 1100
         
         // set the scene
         popup.setScene(pop);
         
         // VBox to hold messages and button
         VBox vb2 = new VBox();
-        
-        // line 1100
         
         // get a random starting part of message
         double rand = Math.random() * 2;
@@ -1141,6 +1147,7 @@ public class GameRunner extends Application
         popup.showAndWait();
     }
     
+    // show the supplies window
     private static void supMessage(Stage theStage, String msg, int num)
     {
         // make the standard 3 for a new window
@@ -1188,8 +1195,9 @@ public class GameRunner extends Application
         s.show();
     }
     
+    // show the crafting menu window
     private static void showCraftMenu(Stage theStage)
-    {
+    {   // line 1200
         // make the standard 3 for a new window
         Group g = new Group();
         Stage popup = new Stage();
@@ -1197,7 +1205,7 @@ public class GameRunner extends Application
         
         // set the scene and title
         popup.setScene(s);
-        popup.setTitle("Crafting Menu"); // line 1200
+        popup.setTitle("Crafting Menu");
         
         // make all of the buttons to craft
         Button close = new Button("Close");
@@ -1289,7 +1297,7 @@ public class GameRunner extends Application
                 {
                     p.addPickaxe(1);
                 }
-                catch(IllegalArgumentException error)
+                catch(IllegalArgumentException error) // line 1300
                 {
                     showErrorMessage(theStage, error.toString());
                 }
@@ -1297,7 +1305,7 @@ public class GameRunner extends Application
         });
         
         // when shield button is pressed
-        fireproof.setOnAction(new EventHandler<ActionEvent>() // line 1300
+        fireproof.setOnAction(new EventHandler<ActionEvent>() 
         {
             @Override public void handle(ActionEvent e)
             {
@@ -1333,6 +1341,7 @@ public class GameRunner extends Application
         popup.showAndWait();
     }
     
+    // show error message window
     private static void showErrorMessage(Stage theStage, String err)
     {
         // make the standard 3 for a new window
@@ -1370,6 +1379,7 @@ public class GameRunner extends Application
         s.showAndWait();
     }
     
+    // show gift message window
     private static void giftMessage(Stage theStage, String gift)
     {
         // make the standard 3 for a new window
@@ -1417,6 +1427,7 @@ public class GameRunner extends Application
         popup.show();
     }
     
+    // show the appropriate screen if player won or lost
     private static void finalScene(Stage theStage, boolean wonGame)
     {
         // if the player has won
@@ -1427,6 +1438,7 @@ public class GameRunner extends Application
             loseGame(theStage);
     }
     
+    // show the final boss window
     private static void finalBoss(Stage theStage)
     {
         // make the standard 3 for a new window
@@ -1465,6 +1477,7 @@ public class GameRunner extends Application
         popup.show();
     }
     
+    // show the lose game message
     private static void loseGame(Stage theStage)
     {
         // make the standard 3 for a new window
@@ -1503,6 +1516,7 @@ public class GameRunner extends Application
         popup.show();
     }
     
+    // show the final stage
     private static void atFinal(Stage theStage, String message, String weapon)
     {
         // make the standard 3 for a new window
@@ -1597,7 +1611,7 @@ public class GameRunner extends Application
             
             Text msg = new Text(" ");
             Button close = new Button("Close");
-    
+            // line 1600
             // add everything to VBox
             textVB.getChildren().addAll(msg, close);
             textVB.setPrefWidth(windowS / 3);
