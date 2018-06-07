@@ -1,9 +1,9 @@
 import java.awt.geom.Point2D;
 /**
- * Write a description of class Supplies here.
+ * Class Supplies represents the supplies present in the game.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Satvik Nagpal)
+ * @version (06/06/2018)
  */
 public class Supplies extends Materials
 {
@@ -16,9 +16,9 @@ public class Supplies extends Materials
      */
     public Supplies()
     {
-        myAmount = 0; 
-        myCapacity = 0;
-        point = new Point2D.Double(0.0, 0.0);
+        myAmount = 0; //starts out with 0 amount
+        myCapacity = 0; //0 capacity
+        point = new Point2D.Double(0, 0);
     }
     
     /**
@@ -58,6 +58,10 @@ public class Supplies extends Materials
         return point;
     }
     
+    /**
+     * <b>Summary</b> Method toString() - returns supply name in a string
+     * @return String of supply
+     */
     public String toString()
     {
         return "supply";

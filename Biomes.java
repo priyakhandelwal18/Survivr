@@ -1,9 +1,9 @@
 import java.awt.Point;
 /**
- * Abstract class Biomes - write a description of the class here
+ * Abstract class Biomes - Superclass of all the biomes which contains some common methods
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author (Satvik Nagpal)
+ * @version (06/06/2018)
  */
 public abstract class Biomes
 {
@@ -47,6 +47,10 @@ public abstract class Biomes
         }
     }
     
+    /**
+     * <b>Summary</b> Method clearMaterial() - clears material at a certain spot
+     * @param pos point at which material should be cleared
+     */
     public void clearMaterial(Point pos)
     {
         biome[(int)pos.getY()][(int)pos.getX()] = null;

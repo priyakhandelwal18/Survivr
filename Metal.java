@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Metal here.
+ * Class Metal represents the properties of metal in this game.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Satvik Nagpal)
+ * @version (06/06/2018)
  */
 public class Metal extends Supplies
 {
@@ -24,6 +24,11 @@ public class Metal extends Supplies
     {
         super(amount, x, y);
     }
+    
+    /**
+     * <b>Summary</b> Method toString() - returns name of supply in a string
+     * @return a String that represents supply
+     */
     public String toString()
     {
         return "metal";

@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Wood here.
+ * Class Wood represents the properties of wood in this game.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Satvik Nagpal)
+ * @version (06/06/2018)
  */
 public class Wood extends Supplies
 {
@@ -24,6 +24,10 @@ public class Wood extends Supplies
     {
         super(amount, x, y);
     }
+    /**
+     * <b>Summary</b> Method toString() - returns the name of the supply in a string
+     * @return string that represents a string
+     */
     public String toString()
     {
         return "wood";

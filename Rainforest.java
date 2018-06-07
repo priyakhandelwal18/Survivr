@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Rainforest here.
+ * Class Rainforest represents one biome in the game which has both obstacles and supplies.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Satvik Nagpal)
+ * @version (06/06/2018)
  */
 public class Rainforest extends Biomes
 {
