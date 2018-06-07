@@ -81,7 +81,7 @@ public class GameRunner extends Application
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
         // save the width and height of the window and scale it by 66%
         windowS = (int)(bounds.getHeight());
-        
+        // the scale between the map + player drawing and board
         scale = (int)(windowS * .9/200);
         
         // create a VBox to organize the other nodes
@@ -105,7 +105,9 @@ public class GameRunner extends Application
         Button creditB = new Button("Credits");
         // make a welcome text
         Label welcome = new Label("Welcome to:\nSurvivor");
+        // fancify the text
         welcome.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        // center the text
         welcome.setTextAlignment(TextAlignment.CENTER);
         
         // add the buttons to the VBox
@@ -113,6 +115,7 @@ public class GameRunner extends Application
         vb.setPrefWidth(windowS / 5);
         vb.setPrefHeight(windowS / 3);
         
+        // center the VBox
         vb.setAlignment(Pos.CENTER);
         
         // add the VBox to the scene
@@ -121,15 +124,15 @@ public class GameRunner extends Application
         // create a player
         p = new Player("  ");
         
+        // make a tim
         tim = new TimTheEnchanter();
-        
-        
         
         // When the start button is pressed
         startB.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
+                    // go to the player choosing stage
                     choosePlayer(theStage);
                 }
             });
@@ -160,57 +163,62 @@ public class GameRunner extends Application
     
     private static void choosePlayer(Stage theStage)
     {
+        // make the standard 3 for a new window
         Group g = new Group();
         Stage popup = new Stage();
         Scene s = new Scene(g, windowS * .8, windowS * .4);
         
+        // set the scene
         popup.sizeToScene(); 
         
-        Canvas c = new Canvas(s.getWidth(), s.getHeight());
-        
+        // horizontal box to hold buttons
         HBox hbButtons = new HBox(70);
+        // to hold labels for images
         HBox hbLabels = new HBox(20);
         
         theStage.close();
         
+        // vertical box to hold all of the HBoxes
         VBox vb = new VBox(s.getWidth() / 15);
         vb.setPrefHeight(windowS / 10);
         
-        
-        HBox hb = new HBox(20);
-        hb.setPrefHeight(c.getHeight());
-        hb.setPrefWidth(c.getWidth());
-        
+        // to hold the images
         HBox images = new HBox(60);
-        
-        GraphicsContext gc = c.getGraphicsContext2D();
-        
+        // title of the page
         Label title = new Label("Choose Your Player");
         
+        // buttons to choose image
         Button pic1 = new Button("       ");
         Button pic2 = new Button("       ");
         Button pic3 = new Button("       ");
         Button pic4 = new Button("       ");
         Button pic5 = new Button("       ");
         
+        // bold the title
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         
+        // add all of the buttons to the HBox
         hbButtons.getChildren().addAll(pic1, pic2, pic3, pic4, pic5);
         
+        // the labels of the images
         Label l1 = new Label("Boring Standard\nPlayer");
         Label l2 = new Label("Bill the Cat");
         Label l3 = new Label("The Lantsberger");
         Label l4 = new Label("Henry the Stressed");
         Label l5 = new Label("Zaphod Beeblebrox");
-        
+        // add the labels to the HBox
         hbLabels.getChildren().addAll(l1, l2, l3, l4, l5);
         
+        // each of the images
         Image bsp = new Image("Person.png");
         Image btc = new Image("bill the cat.png");
         Image l = new Image("mr. lantsberger.png");
         Image hs = new Image("henry.PNG");
         Image zb = new Image("Zaphod Beeblebrox.png");
         
+        // wrap each image in an ImageView
+        // set the width of it
+        // set the height of it
         ImageView vbsp = new ImageView(bsp);
         vbsp.setFitWidth(50);
         vbsp.setFitHeight(70);
@@ -226,9 +234,10 @@ public class GameRunner extends Application
         ImageView vzb = new ImageView(zb);
         vzb.setFitWidth(50);
         vzb.setFitHeight(70);
-        
+        // add all of the ImageViews to the images HBox
         images.getChildren().addAll(vbsp, vbtc, vl, vhs, vzb);
         
+        // add the title and 3 HBoxs to the VBox
         vb.getChildren().addAll(title, hbButtons,hbLabels, images);
         
         // center everything
@@ -238,10 +247,12 @@ public class GameRunner extends Application
         images.setAlignment(Pos.CENTER);
         vb.setAlignment(Pos.CENTER);
         
+        // add the VBox to the page
         g.getChildren().addAll(vb);
         
         popup.setScene(s);
         
+        // title the window
         popup.setTitle("Player");
         
         // When the pic1 button is pressed
@@ -249,6 +260,7 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
+                // save the image the player chose
                 playerImage = "Person.png";
                 popup.close();
                 // start the game
@@ -261,6 +273,7 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
+                // save the image the player chose
                 playerImage = "bill the cat.png";
                 popup.close();
                 // start the game
@@ -273,6 +286,7 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
+                // save the image the player chose
                 playerImage = "mr. lantsberger.png";
                 popup.close();
                 // start the game
@@ -285,6 +299,7 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
+                // save the image the player chose
                 playerImage = "henry.PNG";
                 popup.close();
                 // start the game
@@ -297,6 +312,7 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
+                // save the image the player chose
                 playerImage = "Zaphod Beeblebrox.png";
                 popup.close();
                 // start the game
@@ -311,6 +327,8 @@ public class GameRunner extends Application
     {
         // Close the menu window
         theStage.close();
+        
+        // make the standard 3 for a new window
         // create a new window
         Stage game = new Stage();
         // set the window title
@@ -329,21 +347,27 @@ public class GameRunner extends Application
         pWidth = windowS /40.0;
         pHeight = windowS / 20.0;
         
+        // to hold the canvas and the sidebar
         HBox hb = new HBox(10);
+        // side bar
         VBox vb = new VBox(20);
+        // left and right buttons
         HBox lr = new HBox(5);
         
+        // mkae directional buttons
         Button up = new Button("      up      ");
         Button down = new Button("     down     ");
         Button left = new Button("left");
         Button right = new Button("right");
         
+        // add left and right to HBox
         lr.getChildren().addAll(left, right);
-        
+        // add the canvas and vbox to the HBox
         hb.getChildren().addAll(c, vb);
-        // add canvas to group
+        // add HBox to group
         root.getChildren().add(hb);
         
+        // all of the labels along with the amount
         Text health = new Text("Health: " + p.getHealth());
         Text wood = new Text("Wood: " + p.getWood());
         Text metal = new Text("Metal: " + p.getMetal());
@@ -356,6 +380,7 @@ public class GameRunner extends Application
         Text rope = new Text("Rope: " + p.getRope());
         Text spear = new Text("Spear: " + p.getSpear());
         
+        // all of the images corresponding with the labels
         Image h = new Image("HEART.png");
         Image wo = new Image("WOOD.png");
         Image m = new Image("METAL.png");
@@ -368,6 +393,8 @@ public class GameRunner extends Application
         Image r = new Image("ROPE.png");
         Image s = new Image("SPEAR.png");
         
+        // wrap the corresponding Image into an ImageView
+        // size it accordingly
         ImageView vh = new ImageView(h);
         vh.setFitWidth(20);
         vh.setFitHeight(20);
@@ -402,8 +429,11 @@ public class GameRunner extends Application
         vs.setFitWidth(20);
         vs.setFitHeight(20);
         
+        // to hold the images and labels
         HBox IandL = new HBox(5);
+        // to hold the images
         VBox images = new VBox(15);
+        // to hold the labels
         VBox labels = new VBox(19);
         
         images.getChildren().addAll(vh, vwo, vm, vfo, vwa, vB, va, vpi, vfi, vr, vs);
@@ -673,10 +703,12 @@ public class GameRunner extends Application
         // close the menu
         theStage.close();
 
+        // make the standard 3 for a new window
         // create a new group of nodes
         Group instG = new Group();
         // make a new window
         Stage instStage = new Stage();
+        Scene instScene = new Scene(instG);
 
         // set the title of the window
         instStage.setTitle("Instructions");
@@ -688,8 +720,8 @@ public class GameRunner extends Application
         // button to go back to the main menu
         Button backB = new Button("Back");
 
-        // create and add scene with instructions
-        Scene instScene = new Scene(instG);
+        // add scene to stage
+        
         instStage.setScene(instScene);
         
         Image timImage = new Image("tim the enchanter.png"); // Replace with picture of Tim
@@ -770,10 +802,12 @@ public class GameRunner extends Application
     {
         theStage.close();
         
+        // make the standard 3 for a new window
         // create a new group of nodes
         Group credG = new Group();
         // make a new window
         Stage credStage = new Stage();
+        Scene credScene = new Scene(credG);
 
         // set the title of the window
         credStage.setTitle("Credits");
@@ -785,7 +819,7 @@ public class GameRunner extends Application
         Button backB = new Button("Back");
 
         // create and add scene with instructions
-        Scene credScene = new Scene(credG);
+        
         credStage.setScene(credScene);
 
         // label the window
@@ -828,6 +862,7 @@ public class GameRunner extends Application
     
     private static void atObstacle(Stage theStage, String message, String weapon)
     {
+        // make the standard 3 for a new window
         Group g3 = new Group();
         Scene pop = new Scene(g3);
         Stage popup = new Stage();
@@ -952,9 +987,11 @@ public class GameRunner extends Application
     
     private static void winOrLose(Stage theStage, String status)
     {
+        // make the standard 3 for a new window
         Group g = new Group();
         Stage s = new Stage();
         Scene results = new Scene(g);
+        
         s.setScene(results);
         s.setTitle("Results");
         
@@ -972,6 +1009,7 @@ public class GameRunner extends Application
     
     private static void atSupply(Stage theStage, String msg, String sup)
     {
+        // make the standard 3 for a new window
         Group g3 = new Group();
         Scene pop = new Scene(g3);
         Stage popup = new Stage();
@@ -1019,6 +1057,7 @@ public class GameRunner extends Application
     
     private static void supMessage(Stage theStage, String msg, int num)
     {
+        // make the standard 3 for a new window
         Group g2 = new Group();
         Scene msgS = new Scene(g2);
         Stage s = new Stage();
@@ -1059,6 +1098,7 @@ public class GameRunner extends Application
     
     private static void showCraftMenu(Stage theStage)
     {
+        // make the standard 3 for a new window
         Group g = new Group();
         Stage popup = new Stage();
         Scene s = new Scene(g);
@@ -1189,9 +1229,11 @@ public class GameRunner extends Application
     
     private static void showErrorMessage(Stage theStage, String err)
     {
+        // make the standard 3 for a new window
         Group g = new Group();
         Stage s = new Stage();
         Scene error = new Scene(g);
+        
         s.setScene(error);
         s.setTitle("Error");
         
@@ -1211,6 +1253,7 @@ public class GameRunner extends Application
     
     private static void giftMessage(Stage theStage, String gift)
     {
+        // make the standard 3 for a new window
         Group g = new Group();
         Stage popup = new Stage();
         Scene s = new Scene(g);
@@ -1257,6 +1300,7 @@ public class GameRunner extends Application
     
     private static void finalBoss(Stage theStage)
     {
+        // make the standard 3 for a new window
         Group g = new Group();
         Stage popup = new Stage();
         Scene s = new Scene(g);
@@ -1287,6 +1331,7 @@ public class GameRunner extends Application
     
     private static void loseGame(Stage theStage)
     {
+        // make the standard 3 for a new window
         Group g = new Group();
         Stage popup = new Stage();
         Scene s = new Scene(g);
@@ -1317,6 +1362,7 @@ public class GameRunner extends Application
     
     private static void atFinal(Stage theStage, String message, String weapon)
     {
+        // make the standard 3 for a new window
         Group g3 = new Group();
         Scene pop = new Scene(g3);
         Stage popup = new Stage();
@@ -1376,6 +1422,7 @@ public class GameRunner extends Application
         
         for(int i = 0; i < numPops; i++)
         {
+            // make the standard 3 for a new window
             // create a new group of nodes
             Group g = new Group();
             Scene s = new Scene(g);
@@ -1418,6 +1465,5 @@ public class GameRunner extends Application
             // show the instructions window
             popup.show();
         }
-        
     }
 }
