@@ -436,16 +436,22 @@ public class GameRunner extends Application
         // to hold the labels
         VBox labels = new VBox(19);
         
+        // add all of the ImageViews into the VBox
         images.getChildren().addAll(vh, vwo, vm, vfo, vwa, vB, va, vpi, vfi, vr, vs);
+        // add all of the ImageViews into the VBox
         labels.getChildren().addAll(health, wood, metal, food, water, bAndA, armor, pick, fireproof, rope, spear);
-        
+        // add the images and labels to the HBox
         IandL.getChildren().addAll(images, labels);
         
+        // make craft button
         Button craft = new Button("Craft");
+        // make an eat button
         Button eat = new Button("Eat Food");
+        // make a drink button
         Button drink = new Button("Drink");
+        // add the images and labels along with the three buttons to the sidebar
         vb.getChildren().addAll(IandL, craft, eat, drink);
-        
+        // add the directional buttons to sidebar
         vb.getChildren().addAll(up, lr, down);
         
         // create a graphics context
@@ -463,6 +469,10 @@ public class GameRunner extends Application
         // holds the inputs
         ArrayList<String> input = new ArrayList<String>();
     
+        /* ------------------------ Used for using arrow keys ---------------------------------*/
+        // got rid of it because it was too sensitive
+        // and player was moving too much
+        
         // // when a key is pressed
         // theScene.setOnKeyPressed(
             // new EventHandler<KeyEvent>()
@@ -491,7 +501,9 @@ public class GameRunner extends Application
                 // }
             // }
         // );
-    
+        
+        /*------------------------------------------------------------*/
+        
         // make a new AnimationTimer 
         new AnimationTimer()
         {
@@ -500,6 +512,8 @@ public class GameRunner extends Application
                 // refresh the canvas
                 gc.setFill(new Color(0, 0, 0, 0));
                 gc.fillRect(0, 0, windowS, windowS);
+                
+                /*--------------------------------------Also part of arrow keys-----------------------------*/
                 
                 // if the key pressed is LEFT, RIGHT, DOWN, or UP
                 // and the player will not move out of the board
@@ -528,19 +542,15 @@ public class GameRunner extends Application
                                     // checkForStuff(game, p);
                                 // }
         
+                /*--------------------------------------------------------------------------------------------*/
+                                
                 // draw the map and the players again        
                 gc.drawImage(map, 0, 0, c.getWidth(), c.getWidth());
-                
-                if (p.playerBiomeString(p.getLocation()).equalsIgnoreCase("desert"))
-                    gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
-                else
-                    if (p.playerBiomeString(p.getLocation()).equalsIgnoreCase("rainforest"))
-                        gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
-                    else
-                        gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
+                gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
                 
                 //System.out.println("Biome: " + p.playerBiomeString(p.getLocation()));
                         
+                // redraw all of the labels and numbers with them
                 health.setText("Health: " + p.getHealth());
                 wood.setText("Wood: " + p.getWood());
                 metal.setText("Metal: " + p.getMetal());
@@ -555,8 +565,10 @@ public class GameRunner extends Application
                 
                 //System.out.println("pX " + p.getLocation().getX() + "   pY " + p.getLocation().getY());
                 
+                // if the player died
                 if(tim.die(p) != null)
                 {
+                    // show final scene and stop game
                     game.close();
                     finalScene(theStage, false);
                     stop();
@@ -564,98 +576,118 @@ public class GameRunner extends Application
             }
         }.start();
     
-        // enteredNewBiome(Player player)
-        // runIntoObstacle(Player player)
-        // runIntoSupply(Player player)
-        // randomGift(Player player)
         
+        // if up is pressed
         up.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
+                    // if the move is within the range of the board
                     if(p.getLocation().getY() * scale >= moveSpeed + BORDER / 10.)
                     {
+                        // change player location
                         p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
+                        // check if anything is at that spot
                         checkForStuff(game, p);
                     }
                 }
             }
         );
         
+        // if down is pressed
         down.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
+                    // if the move is within the range of the board
                     if(p.getLocation().getY() * scale <= c.getWidth() - pHeight - moveSpeed - BORDER)
                     {
+                        // change player location
                         p.move((int)(p.getLocation().getX()), (int)(p.getLocation().getY() + moveSpeed));
+                        // check if anything is at that spot
                         checkForStuff(game, p);
                     }
                 }
             }
         );
         
+        // if left is pressed
         left.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
+                    // if the move is within the range of the board
                     if(p.getLocation().getX() * scale >= moveSpeed + BORDER)
                     {
+                        // change player location
                         p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY());
+                        // check if anything is at that spot
                         checkForStuff(game, p);
                     }
                 }
             }
         );
         
+        // if right is pressed
         right.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
+                    // if the move is within the range of the board
                     if(p.getLocation().getX() * scale <= c.getWidth() - pWidth - moveSpeed - BORDER)
                     {
+                        // change player location
                         p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY());
+                        // check if anything is at that spot
                         checkForStuff(game, p);
                     }
                 }
             }
         );
         
+        // if craft is pressed
         craft.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
+                    // show the crafting window
                     showCraftMenu(theStage);
                 }
             }
         );
         
+        // if eat is pressed
         eat.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
+                    // try to make the player eat
                     try
                     {
                         tim.eat(p);
                     }
                     catch (IllegalArgumentException ex)
                     {
+                        // if failed show error message returned
                         showErrorMessage(theStage, ex.toString());
                     }
                 }
             }
         );
         
+        // if up is pressed
         drink.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
+                    // try to make the player drink
                     try
                     {
                         tim.drink(p);
                     }
                     catch (IllegalArgumentException ex)
                     {
+                        // if failed show error message returned
                         showErrorMessage(theStage, ex.toString());
                     }
                 }
@@ -669,31 +701,43 @@ public class GameRunner extends Application
     
     private static void checkForStuff(Stage theStage, Player p)
     {
+        // if the player is at an obstacle
         if(tim.runIntoObstacle(p) != null)
         {
+            // get the obstacle
             Obstacles ob = (Obstacles)tim.returnMaterial(p);
+            // get the type
             String weapon = ob.weapon();
+            // close the previous window
             theStage.close();
+            // if the obstacle is the final stage
             if (ob.toString().equalsIgnoreCase("goto heat wave"))
+                // show the final stage window
                 atFinal(theStage, tim.runIntoObstacle(p), weapon);
             else
+                // show the normal obstacle window
                 atObstacle(theStage, tim.runIntoObstacle(p), weapon);
         }
         else
+            // if player is at suply drop
             if(tim.runIntoSupply(p) != null)
             {
+                // get which type of supplies
                 Supplies su = (Supplies)tim.returnMaterial(p);
                 String supply = su.toString();
+                // get the message
                 String msg = tim.runIntoSupply(p);
                 theStage.close();
+                // show the popup for supplies
                 atSupply(theStage, msg, supply);
-
             }
         
+        // check if player got a random gift from tim
         String gift = tim.randomGift(p);
         if(gift != null)
         {
             theStage.close();
+            // show random gift popup
             giftMessage(theStage, gift);
         }
     }
@@ -721,24 +765,24 @@ public class GameRunner extends Application
         Button backB = new Button("Back");
 
         // add scene to stage
-        
         instStage.setScene(instScene);
         
-        Image timImage = new Image("tim the enchanter.png"); // Replace with picture of Tim
+        // Image of tim
+        Image timImage = new Image("tim the enchanter.png");
+        // wrap in ImageView
         ImageView tim = new ImageView(timImage);
-        
+        // size properly
         tim.setFitHeight(windowS / 6);
         tim.setFitWidth(windowS / 6);
-        
-        Canvas timSpace = new Canvas(windowS / 4, windowS/ 4);
-        GraphicsContext gc = timSpace.getGraphicsContext2D();
 
         // label the window
         Label title = new Label("Instructions:");
+        // fancify text
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         
+        // to set the size of the text
         Font txtFont = new Font(15);
-        // create two 'paragraphs'
+        // create 'paragraphs'
         Text p1 = new Text("I...am an enchanter. There are some who call me...Tim. ");
         Text p2 = new Text("Welcome to British Software Island.\nMany brave souls like you that once set" + 
                             " foot on this island were never seen again…");
@@ -760,6 +804,7 @@ public class GameRunner extends Application
         Text p5 = new Text( "Of course, I’m not" + 
                             " entirely cruel either.\nI will attempt to lend you my help and be...helpful.\n" +
                             "You might find random gifts along the way if you have earned them.\nBe warned, I know of many hidden dangers...");
+        // set the size of the texts
         p1.setFont(txtFont);
         p2.setFont(txtFont);
         p3.setFont(txtFont);
@@ -768,6 +813,7 @@ public class GameRunner extends Application
         
         backB.setFont(txtFont);
         
+        // add to the HBox
         pixHB.getChildren().addAll(p3, tim);
         
         // add everything to VBox
@@ -775,6 +821,7 @@ public class GameRunner extends Application
         // textVB.setPrefWidth(windowS / 3);
         // textVB.setPrefHeight(windowY / 3);
         
+        // formatting
         textVB.setAlignment(Pos.CENTER_LEFT);
         
         
@@ -818,18 +865,17 @@ public class GameRunner extends Application
         // button to go back to the main menu
         Button backB = new Button("Back");
 
-        // create and add scene with instructions
-        
+        // add scene with instructions
         credStage.setScene(credScene);
 
         // label the window
         Label title = new Label("Credits");
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
-        // create two 'paragraphs'
+        // create Texts for authos
         Text p1 = new Text("Varun Agarwal");
         Text p2 = new Text("Arushi Dogra");
         Text p3 = new Text("Satvik Nagpal");
-        Text p4 = new Text("Priya Khatri");
+        Text p4 = new Text("Priya Khandelwal");
         Text p5 = new Text("HUGE THANKS TO MR. L FOR EVERYTHING!!!!!!!!");
         
         // add everything to VBox
