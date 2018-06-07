@@ -7,12 +7,20 @@
 public class TimTheEnchanter
 {
     /**
-     * Constructor for objects of class TimTheEnchanter
+     * Constructor for objects of class TimTheEnchanter- (does not do anything)
      */
     public TimTheEnchanter()
     {   
     }
-
+    
+    /**
+   *  Uses an equation based on health and supply to generate a random number
+   *  If this random number is greater than 80, player succeeds
+   *  If this random number is less than 80, player fails
+   *
+   * @param  Player player  
+   * @return true if player succeeds, false if player fails 
+   */
     public String enteredNewBiome(Player player)
     {
         if(!player.playerBiome(player.getLocation()).equals(player.playerBiome(player.getOldLocation())))
@@ -25,6 +33,14 @@ public class TimTheEnchanter
         return null;
     }
 
+   /**
+   *  Uses an equation based on health and supply to generate a random number
+   *  If this random number is greater than 80, player succeeds
+   *  If this random number is less than 80, player fails
+   *
+   * @param  Player player  
+   * @return true if player succeeds, false if player fails 
+   */
     public String runIntoObstacle(Player p)
     {
         Obstacles obstacle;
@@ -42,6 +58,14 @@ public class TimTheEnchanter
         return returnString;
     }
 
+   /**
+   *  Uses an equation based on health and supply to generate a random number
+   *  If this random number is greater than 80, player succeeds
+   *  If this random number is less than 80, player fails
+   *
+   * @param  Player player  
+   * @return true if player succeeds, false if player fails 
+   */
     public String fightObstacle(Player p, boolean choice)
     {
         Obstacles obstacle = (Obstacles)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
@@ -55,6 +79,14 @@ public class TimTheEnchanter
         }
     }
 
+   /**
+   *  Uses an equation based on health and supply to generate a random number
+   *  If this random number is greater than 80, player succeeds
+   *  If this random number is less than 80, player fails
+   *
+   * @param  Player player  
+   * @return true if player succeeds, false if player fails 
+   */
     public String runIntoSupply(Player p)
     {
         Supplies supply;
@@ -67,6 +99,14 @@ public class TimTheEnchanter
         return null;
     }
 
+   /**
+   *  Uses an equation based on health and supply to generate a random number
+   *  If this random number is greater than 80, player succeeds
+   *  If this random number is less than 80, player fails
+   *
+   * @param  Player player  
+   * @return true if player succeeds, false if player fails 
+   */
     public int collectSupply(Player p)
     {
         Supplies supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
@@ -95,6 +135,14 @@ public class TimTheEnchanter
         return amount;
     }
 
+   /**
+   *  Uses an equation based on health and supply to generate a random number
+   *  If this random number is greater than 80, player succeeds
+   *  If this random number is less than 80, player fails
+   *
+   * @param  Player player  
+   * @return true if player succeeds, false if player fails 
+   */
     public String randomGift(Player player)
     {
         double random = Math.random();
@@ -149,7 +197,15 @@ public class TimTheEnchanter
         }
         return null; 
     }
-    
+   
+   /**
+   *  Uses an equation based on health and supply to generate a random number
+   *  If this random number is greater than 80, player succeeds
+   *  If this random number is less than 80, player fails
+   *
+   * @param  Player player  
+   * @return true if player succeeds, false if player fails 
+   */
     public void drink(Player p)
     {
         if (p.getWater() < 10)
@@ -167,7 +223,15 @@ public class TimTheEnchanter
             }
         }
     }
-    
+   
+   /**
+   *  Uses an equation based on health and supply to generate a random number
+   *  If this random number is greater than 80, player succeeds
+   *  If this random number is less than 80, player fails
+   *
+   * @param  Player player  
+   * @return true if player succeeds, false if player fails 
+   */
     public void eat(Player p)
     {
         if (p.getFood() < 10)
@@ -186,11 +250,27 @@ public class TimTheEnchanter
         }
     }
 
+   /**
+   *  Uses an equation based on health and supply to generate a random number
+   *  If this random number is greater than 80, player succeeds
+   *  If this random number is less than 80, player fails
+   *
+   * @param  Player player  
+   * @return true if player succeeds, false if player fails 
+   */
     public Materials returnMaterial(Player p)
     {
         return p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
     }
 
+   /**
+   *  Uses an equation based on health and supply to generate a random number
+   *  If this random number is greater than 80, player succeeds
+   *  If this random number is less than 80, player fails
+   *
+   * @param  Player player  
+   * @return true if player succeeds, false if player fails 
+   */
     public String die(Player p)
     {
         if(p.getHealth() <= 0)

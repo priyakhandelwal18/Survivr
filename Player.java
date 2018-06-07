@@ -39,8 +39,8 @@ public class Player
     {
         health = 100; //starts off with 100 health
         //starts off with 0 supplies and built supplies
-        metal = 0;
-        wood = 0;
+        metal = 500;
+        wood = 500;
         food = 0;
         water = 0;
         bowAndArrow = 0;
