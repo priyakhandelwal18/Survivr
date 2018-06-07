@@ -12,6 +12,9 @@ public class Desert extends Biomes
         biome = new Materials[80][235]; //size of desert biome
     }
 
+    /**
+     * <b>Summary</b> Method buildObstacles() - builds obstacles in desert biome
+     */
     public void buildObstacles() //sandstorm, fire, drought, famine
     {
         for (int col = 0; col < biome[2].length; col++)
