@@ -1397,7 +1397,7 @@ public class GameRunner extends Application
         Button close = new Button("Close");
         
         // VBox to hold message and button
-        VBox vb = new VBox();
+        VBox vb = new VBox(); // line 1400
         // Label and message
         Label title = new Label("MESSAGE:");
         Text msg = new Text("Tim granted you a gift. You got " + gift);
@@ -1407,7 +1407,7 @@ public class GameRunner extends Application
         ImageView iv = new ImageView(tim);
         
         // add everything to VBox
-        vb.getChildren().addAll(title, msg, iv, close); // line 1400
+        vb.getChildren().addAll(title, msg, iv, close); 
         // center it
         vb.setAlignment(Pos.CENTER);
         
@@ -1497,7 +1497,7 @@ public class GameRunner extends Application
         Text msg2 = new Text("you have dissapointed tim. you have no friends now.");
             
         // add everything to VBox
-        VBox vb = new VBox();
+        VBox vb = new VBox(); // line 1500
         vb.getChildren().addAll(msg, msg2, close);
         
         // add to window
@@ -1510,7 +1510,7 @@ public class GameRunner extends Application
             {
                 // exit program
                 System.exit(0);
-            } // line 1500
+            } 
         });
         
         popup.show();
@@ -1597,7 +1597,7 @@ public class GameRunner extends Application
             // make the standard 3 for a new window
             // create a new group of nodes
             Group g = new Group();
-            Scene s = new Scene(g);
+            Scene s = new Scene(g); // line 1600
             // make a new window
             Stage popup = new Stage();
     
@@ -1611,7 +1611,7 @@ public class GameRunner extends Application
             
             Text msg = new Text(" ");
             Button close = new Button("Close");
-            // line 1600
+            
             // add everything to VBox
             textVB.getChildren().addAll(msg, close);
             textVB.setPrefWidth(windowS / 3);
