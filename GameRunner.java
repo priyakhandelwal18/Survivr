@@ -1091,11 +1091,13 @@ public class GameRunner extends Application
         Scene pop = new Scene(g3);
         Stage popup = new Stage();
         
+        // set the scene
         popup.setScene(pop);
         
+        // VBox to hold messages and button
         VBox vb2 = new VBox();
-        HBox hb = new HBox();
         
+        // get a random starting part of message
         double rand = Math.random() * 2;
         String s = "";
         
@@ -1104,25 +1106,30 @@ public class GameRunner extends Application
         else
             s = "Awesome! ";
         
+        // message to display 
         Text obstacle = new Text(s + " =) You found a some supplies. " + msg);
         
+        // button to take supplies
         Button supplyB1 = new Button("Take and Leave");
-        
+        // add all of the things to the VBox
         vb2.getChildren().addAll(obstacle, supplyB1);
         vb2.setPrefWidth(windowS / 4);
         vb2.setPrefHeight(windowS / 4);
-        
+        // formatting
         vb2.setAlignment(Pos.CENTER);
         
+        // add VBox to window
         g3.getChildren().add(vb2);
         
+        // get the number of supplies in supply drop
         int supNum = tim.collectSupply(p);
         
-        // when the button is pressed
+        // when the take and leave button is pressed
         supplyB1.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
+                // show popup
                 supMessage(popup, sup, supNum);
                 theStage.show();
                 theStage.toBack();
@@ -1141,30 +1148,36 @@ public class GameRunner extends Application
         
         theStage.close();
         
-        Canvas c = new Canvas(windowS / 5, windowS / 5);
-        
+        // set scene and title
         s.setScene(msgS);
         s.setTitle("Supply");
         
+        // VBox to hold messages and button
         VBox vb = new VBox(20);
         
+        // add VBox to window
         g2.getChildren().addAll(vb);
         
+        // sizing
         vb.setPrefWidth(windowS / 6);
         vb.setPrefHeight(windowS / 4);
         
+        // label, message, and button to show what you got and to exit window
         Label title = new Label("You got:");
         Text msgT = new Text(num + " " + msg);
         Button close = new Button("Close");
         
+        // add three to VBox
         vb.getChildren().addAll(title, msgT, close);
+        // center it
         vb.setAlignment(Pos.CENTER);
         
-        
+        // when close is pressed
         close.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
+                // close window
                 s.close();
             }
         });
@@ -1180,9 +1193,11 @@ public class GameRunner extends Application
         Stage popup = new Stage();
         Scene s = new Scene(g);
         
+        // set the scene and title
         popup.setScene(s);
+        popup.setTitle("Crafting Menu");
         
-        
+        // make all of the buttons to craft
         Button close = new Button("Close");
         Button bowArrow = new Button("Bow and Arrow");
         Button spear = new Button("Spear");
@@ -1191,13 +1206,18 @@ public class GameRunner extends Application
         Button fireproof = new Button("Fire-Proof Shield");
         Button rope = new Button("Rope");
         
+        // add them all to an HBox
         HBox buttons = new HBox(20);
         VBox vb = new VBox(30);
         
         buttons.getChildren().addAll(bowArrow, spear, armor, pick, fireproof, rope);
+        // add the buttons to a VBox and add the close button
         vb.getChildren().addAll(buttons, close);
+        
+        // add to the window
         g.getChildren().add(vb);
-           
+        
+        // when close is pressed
         close.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
@@ -1206,10 +1226,12 @@ public class GameRunner extends Application
             }
         });
         
+        // when bow and arrow button is pressed
         bowArrow.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
+                // try to add otherwise show error message
                 try
                 {
                     p.addBowAndArrow(1);
@@ -1221,11 +1243,12 @@ public class GameRunner extends Application
             }
         });
         
-        
+        // when spear button is pressed
         spear.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
+                // try to add otherwise show error message
                 try
                 {
                     p.addSpear(1);
@@ -1237,11 +1260,12 @@ public class GameRunner extends Application
             }
         });
         
-        
+        // when armor button is pressed
         armor.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
+                // try to add otherwise show error message
                 try
                 {
                     p.addArmor(1);
@@ -1253,11 +1277,12 @@ public class GameRunner extends Application
             }
         });
         
-        
+        // when pickACKS button is pressed ---:^)
         pick.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
+                // try to add otherwise show error message
                 try
                 {
                     p.addPickaxe(1);
@@ -1269,11 +1294,12 @@ public class GameRunner extends Application
             }
         });
         
-        
+        // when shield button is pressed
         fireproof.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
+                // try to add otherwise show error message
                 try
                 {
                     p.addFireProofShield(1);
@@ -1285,11 +1311,12 @@ public class GameRunner extends Application
             }
         });
         
-        
+        // when rope button is pressed
         rope.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
+                // try to add otherwise show error message
                 try
                 {
                     p.addRope(1);
@@ -1311,6 +1338,7 @@ public class GameRunner extends Application
         Stage s = new Stage();
         Scene error = new Scene(g);
         
+        // set the scene and title
         s.setScene(error);
         s.setTitle("Error");
         
