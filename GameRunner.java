@@ -523,6 +523,7 @@ public class GameRunner extends Application
                 pick.setText("Pickaxe: " + p.getPickaxe());
                 fireproof.setText("Fire-Proof Shield: " + p.getFireProofShield());
                 rope.setText("Rope: " + p.getRope());
+                spear.setText("Spear: " + p.getSpear());
                 
                 //System.out.println("pX " + p.getLocation().getX() + "   pY " + p.getLocation().getY());
                 
