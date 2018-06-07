@@ -56,14 +56,13 @@ public class GameRunner extends Application
     // double to hold the speed of movement of the character
     static final int moveSpeed = 1;
     // will hold the size of the window
-    static int windowX, windowY;
+    static int windowS;
     // border around the edge where player cannot travel
     static final int BORDER = 60;
     // size of player
     static double pWidth, pHeight;
     // Player
     static Player p;
-    static int choice;
     static TimTheEnchanter tim;
     static String playerImage;
     static int scale;
@@ -81,10 +80,9 @@ public class GameRunner extends Application
         // returns the screen size as a Rectangle2D
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
         // save the width and height of the window and scale it by 66%
-        windowY = (int)(bounds.getHeight());
-        windowX = windowY;
+        windowS = (int)(bounds.getHeight());
         
-        scale = (int)(windowX*.9/200);
+        scale = (int)(windowS * .9/200);
         
         // create a VBox to organize the other nodes
         VBox vb = new VBox(20);
@@ -112,8 +110,8 @@ public class GameRunner extends Application
         
         // add the buttons to the VBox
         vb.getChildren().addAll(welcome, startB, instB, creditB);
-        vb.setPrefWidth(windowX / 5);
-        vb.setPrefHeight(windowY / 3);
+        vb.setPrefWidth(windowS / 5);
+        vb.setPrefHeight(windowS / 3);
         
         vb.setAlignment(Pos.CENTER);
         
@@ -164,7 +162,7 @@ public class GameRunner extends Application
     {
         Group g = new Group();
         Stage popup = new Stage();
-        Scene s = new Scene(g, windowX * .8, windowX * .4);
+        Scene s = new Scene(g, windowS * .8, windowS * .4);
         
         popup.sizeToScene(); 
         
@@ -176,7 +174,7 @@ public class GameRunner extends Application
         theStage.close();
         
         VBox vb = new VBox(s.getWidth() / 15);
-        vb.setPrefHeight(windowX / 10);
+        vb.setPrefHeight(windowS / 10);
         
         
         HBox hb = new HBox(20);
@@ -325,11 +323,11 @@ public class GameRunner extends Application
         game.setScene(theScene);
     
         // create a canvas for the game
-        Canvas c = new Canvas(windowX * .9, windowY * .9);
+        Canvas c = new Canvas(windowS * .9, windowS * .9);
         
         // set size of player
-        pWidth = windowX /40.0;
-        pHeight = windowY / 20.0;
+        pWidth = windowS /40.0;
+        pHeight = windowS / 20.0;
         
         HBox hb = new HBox(10);
         VBox vb = new VBox(20);
@@ -471,7 +469,7 @@ public class GameRunner extends Application
             {
                 // refresh the canvas
                 gc.setFill(new Color(0, 0, 0, 0));
-                gc.fillRect(0, 0, windowX, windowY);
+                gc.fillRect(0, 0, windowS, windowS);
                 
                 // if the key pressed is LEFT, RIGHT, DOWN, or UP
                 // and the player will not move out of the board
@@ -697,10 +695,10 @@ public class GameRunner extends Application
         Image timImage = new Image("tim the enchanter.png"); // Replace with picture of Tim
         ImageView tim = new ImageView(timImage);
         
-        tim.setFitHeight(windowX / 6);
-        tim.setFitWidth(windowX / 6);
+        tim.setFitHeight(windowS / 6);
+        tim.setFitWidth(windowS / 6);
         
-        Canvas timSpace = new Canvas(windowX / 4, windowY/ 4);
+        Canvas timSpace = new Canvas(windowS / 4, windowS/ 4);
         GraphicsContext gc = timSpace.getGraphicsContext2D();
 
         // label the window
@@ -742,7 +740,7 @@ public class GameRunner extends Application
         
         // add everything to VBox
         textVB.getChildren().addAll(title, p1, p2, pixHB, p4, p5, backB);
-        // textVB.setPrefWidth(windowX / 3);
+        // textVB.setPrefWidth(windowS / 3);
         // textVB.setPrefHeight(windowY / 3);
         
         textVB.setAlignment(Pos.CENTER_LEFT);
@@ -802,8 +800,8 @@ public class GameRunner extends Application
         
         // add everything to VBox
         textVB.getChildren().addAll(title, p1, p2, p3, p4, p5, backB);
-        textVB.setPrefWidth(windowX / 3);
-        textVB.setPrefHeight(windowY / 3);
+        textVB.setPrefWidth(windowS / 3);
+        textVB.setPrefHeight(windowS / 3);
         
         textVB.setAlignment(Pos.CENTER);
         
@@ -880,8 +878,8 @@ public class GameRunner extends Application
             vb2.getChildren().addAll(obstacle, nope, ok);
         else
             vb2.getChildren().addAll(obstacle, counterB1, counterB2);
-        vb2.setPrefWidth(windowX / 4);
-        vb2.setPrefHeight(windowY / 4);
+        vb2.setPrefWidth(windowS / 4);
+        vb2.setPrefHeight(windowS / 4);
         
         vb2.setAlignment(Pos.CENTER);
         
@@ -996,8 +994,8 @@ public class GameRunner extends Application
         Button supplyB1 = new Button("Take and Leave");
         
         vb2.getChildren().addAll(obstacle, supplyB1);
-        vb2.setPrefWidth(windowX / 4);
-        vb2.setPrefHeight(windowY / 4);
+        vb2.setPrefWidth(windowS / 4);
+        vb2.setPrefHeight(windowS / 4);
         
         vb2.setAlignment(Pos.CENTER);
         
@@ -1027,7 +1025,7 @@ public class GameRunner extends Application
         
         theStage.close();
         
-        Canvas c = new Canvas(windowX / 5, windowX / 5);
+        Canvas c = new Canvas(windowS / 5, windowS / 5);
         
         s.setScene(msgS);
         s.setTitle("Supply");
@@ -1036,8 +1034,8 @@ public class GameRunner extends Application
         
         g2.getChildren().addAll(vb);
         
-        vb.setPrefWidth(windowX / 6);
-        vb.setPrefHeight(windowY / 4);
+        vb.setPrefWidth(windowS / 6);
+        vb.setPrefHeight(windowS / 4);
         
         Label title = new Label("You got:");
         Text msgT = new Text(num + " " + msg);
@@ -1344,8 +1342,8 @@ public class GameRunner extends Application
 
         vb2.getChildren().addAll(obstacle, nope, ok);
         
-        vb2.setPrefWidth(windowX / 4);
-        vb2.setPrefHeight(windowY / 4);
+        vb2.setPrefWidth(windowS / 4);
+        vb2.setPrefHeight(windowS / 4);
         
         vb2.setAlignment(Pos.CENTER);
         
@@ -1397,8 +1395,8 @@ public class GameRunner extends Application
     
             // add everything to VBox
             textVB.getChildren().addAll(msg, close);
-            textVB.setPrefWidth(windowX / 3);
-            textVB.setPrefHeight(windowY / 3);
+            textVB.setPrefWidth(windowS / 3);
+            textVB.setPrefHeight(windowS / 3);
             
             textVB.setAlignment(Pos.CENTER);
             
