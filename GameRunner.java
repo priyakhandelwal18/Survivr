@@ -1097,6 +1097,8 @@ public class GameRunner extends Application
         // VBox to hold messages and button
         VBox vb2 = new VBox();
         
+        // line 1100
+        
         // get a random starting part of message
         double rand = Math.random() * 2;
         String s = "";
@@ -1195,7 +1197,7 @@ public class GameRunner extends Application
         
         // set the scene and title
         popup.setScene(s);
-        popup.setTitle("Crafting Menu");
+        popup.setTitle("Crafting Menu"); // line 1200
         
         // make all of the buttons to craft
         Button close = new Button("Close");
@@ -1295,7 +1297,7 @@ public class GameRunner extends Application
         });
         
         // when shield button is pressed
-        fireproof.setOnAction(new EventHandler<ActionEvent>()
+        fireproof.setOnAction(new EventHandler<ActionEvent>() // line 1300
         {
             @Override public void handle(ActionEvent e)
             {
@@ -1395,7 +1397,7 @@ public class GameRunner extends Application
         ImageView iv = new ImageView(tim);
         
         // add everything to VBox
-        vb.getChildren().addAll(title, msg, iv, close);
+        vb.getChildren().addAll(title, msg, iv, close); // line 1400
         // center it
         vb.setAlignment(Pos.CENTER);
         
@@ -1495,7 +1497,7 @@ public class GameRunner extends Application
             {
                 // exit program
                 System.exit(0);
-            }
+            } // line 1500
         });
         
         popup.show();
@@ -1508,12 +1510,15 @@ public class GameRunner extends Application
         Scene pop = new Scene(g3);
         Stage popup = new Stage();
         
+        // set scene and title
         popup.setScene(pop);
         popup.setTitle("FINAL OBSTACLE");
         
+        // to hold the messages and button
         VBox vb2 = new VBox();
         HBox hb = new HBox();
         
+        // make a random starting for the message
         double rand = Math.random() * 2;
         String s = "";
         
@@ -1522,27 +1527,35 @@ public class GameRunner extends Application
         else
             s = "OH NO! ";
         
+        //messages to display
         Text obstacle = new Text(s + message);
         Text nope = new Text(weapon);
         
+        // button to continue
         Button ok = new Button(" Ok ");
 
+        // add three to VBox
         vb2.getChildren().addAll(obstacle, nope, ok);
-        
+        // sizing
         vb2.setPrefWidth(windowS / 4);
         vb2.setPrefHeight(windowS / 4);
-        
+        // formatting
         vb2.setAlignment(Pos.CENTER);
         
+        // add VBox to window
         g3.getChildren().add(vb2);
         
+        // when ok is pressed
         ok.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
+                // get whether the player won or lost
                 wol = tim.fightObstacle(p, false);
                 popup.close();
                 //waiting(theStage);
+                // if won show win screen
+                // else show die screen
                 if(tim.win(p) != null)
                     finalScene(popup, true);
                 else
@@ -1555,6 +1568,10 @@ public class GameRunner extends Application
         
         popup.show();
     }
+    
+    // not being used
+    // first idea: loading bar
+    // second idea: a bunch of popups
     
     private static void waiting(Stage theStage)
     {
