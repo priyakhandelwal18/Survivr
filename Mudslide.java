@@ -1,12 +1,11 @@
 /**
- * Write a description of class Mudslide here - a Level 1 Obstacle
+ * class Mudslide here - a Level 1 Obstacle
  *
  * @author PriyaK
  * @version 052518
  */
 public class Mudslide extends Obstacles
 {
-    // factors in rope built supply
     /**
      * Constructor for objects of class Mudslide - initializes the location of the mudslide
      */
@@ -27,27 +26,31 @@ public class Mudslide extends Obstacles
     }
 
     /**
-     *  Uses an equation based on health and supply to generate a random number
-     *  If this random number is greater than 20, player succeeds
-     *  If this random number is less than 20, player fails
+     *  Uses an equation based on health and "irrelavant" supply to generate a random number
+     *  If player chose to use a weapon, then if this random number is greater than 35, player succeeds
+     *  If the player does not use a weapon, then if this random number is greater than 70, player succeeds
+     *  else player fails
      *
-     * @param  Player player  
+     * @param  Player player, boolean choice  
      * @return true if player succeeds, false if player fails 
      */
     public boolean succeedOrFail(Player p, boolean choice)
     {
-        double constant = Math.random();
-        boolean survive;
+        double constant = Math.random(); 
+        boolean survive; // keeps track of whether player won or lost against obstacle
+        // if player used weapon, a littler bit easier to win
         if(choice)
         {
             if ((constant) * (p.getHealth() + p.getMetal()) >= 35)
                 survive = true;
             else
             {
+                // if player lost, decrement health
                 survive = false;
                 healthDecrement(p);
             }
         }
+        // if player did not use a weapon, a littler harder easier to win
         else
         {
             if ((constant) * (p.getHealth() + p.getMetal()) >= 70)
@@ -56,6 +59,7 @@ public class Mudslide extends Obstacles
             }
             else
             {
+                // if player lost, decrement health
                 survive = false;
                 healthDecrement(p);
             }
@@ -63,11 +67,23 @@ public class Mudslide extends Obstacles
         return survive;
     }
 
+    /**
+     *  Returns name of obstacle
+     *
+     * @param  none  
+     * @return String  
+     */
     public String toString()
     {
         return "mudslide";
     }
     
+    /**
+     *  Returns name of weapon that can be used to help fight against obstacle: rope
+     *
+     * @param  none  
+     * @return String  
+     */
     public String weapon()
     {
         return "rope";
