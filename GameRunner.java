@@ -1342,15 +1342,27 @@ public class GameRunner extends Application
         s.setScene(error);
         s.setTitle("Error");
         
+        // VBox to hold message
         VBox vB = new VBox(20);
         
         err = err.substring(36);
         
         Text msg = new Text("Oops. Unfortunately, you can't do that.");
         Text msg1 = new Text(err);
+        Button close = new Button("Close");
         
-        vB.getChildren().addAll(msg, msg1);
+        vB.getChildren().addAll(msg, msg1, close);
         
+        // when close button is pressed
+        close.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                s.close();
+            }
+        });
+        
+        // add all to window
         g.getChildren().add(vB);
         
         s.showAndWait();
@@ -1365,20 +1377,32 @@ public class GameRunner extends Application
         
         theStage.close();
         
+        // set the scene and title
         popup.setScene(s);
+        popup.setTitle("Gift");
         
+        // button to close
         Button close = new Button("Close");
         
+        // VBox to hold message and button
         VBox vb = new VBox();
+        // Label and message
         Label title = new Label("MESSAGE:");
         Text msg = new Text("Tim granted you a gift. You got " + gift);
         
+        // Image wrapped in an ImageView
         Image tim = new Image("FULL ON TIM.png");
         ImageView iv = new ImageView(tim);
+        
+        // add everything to VBox
         vb.getChildren().addAll(title, msg, iv, close);
+        // center it
         vb.setAlignment(Pos.CENTER);
+        
+        // add evertyhing to window
         g.getChildren().add(vb);
            
+        // when close button is pressed
         close.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
@@ -1393,14 +1417,12 @@ public class GameRunner extends Application
     
     private static void finalScene(Stage theStage, boolean wonGame)
     {
+        // if the player has won
         if(wonGame)
-        {
             finalBoss(theStage);
-        }
         else
-        {
+            // if the player lost the game
             loseGame(theStage);
-        }
     }
     
     private static void finalBoss(Stage theStage)
@@ -1412,21 +1434,28 @@ public class GameRunner extends Application
         
         theStage.close();
         
+        // set the scene and title
         popup.setScene(s);
+        popup.setTitle("FINAL BOSS");
         
+        // button to close and messages to show
         Button close = new Button("Close");
-        
         Text msg = new Text("congrats you wasted ur time on this game and won.");
         Text msg2 = new Text("you have made your friend tim proud.");
         
+        // to hold messages and button
         VBox vb = new VBox();
         vb.getChildren().addAll(msg, msg2, close);
+        
+        // show on window
         g.getChildren().add(vb);
         
+        // when close is pressed
         close.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
+                // close program
                 System.exit(0);
             }
         });
@@ -1443,21 +1472,28 @@ public class GameRunner extends Application
         
         theStage.close();
         
+        // set the scene and title
         popup.setScene(s);
+        popup.setTitle("You dun goofed");
         
+        // Button and two messages to show
         Button close = new Button("Close");
-        
         Text msg = new Text("congrats you wasted ur time on this game and lost.");
         Text msg2 = new Text("you have dissapointed tim. you have no friends now.");
             
+        // add everything to VBox
         VBox vb = new VBox();
         vb.getChildren().addAll(msg, msg2, close);
+        
+        // add to window
         g.getChildren().add(vb);
            
+        // when the close button is pressed
         close.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
+                // exit program
                 System.exit(0);
             }
         });
