@@ -38,7 +38,7 @@ public class Fire extends Obstacles // lvl 3
      */
     public boolean succeedOrFail(Player p, boolean choice)
     {
-        double constant = generateConstant();
+        double constant = Math.random();
         boolean survive;
         if(choice)
         {
@@ -52,7 +52,7 @@ public class Fire extends Obstacles // lvl 3
         }
         else
         {
-            if ((constant) * (p.getHealth() + p.getWater()) >= 100)
+            if ((constant) * (p.getHealth() + p.getWater()) >= 110)
             {
                 survive = true;
             }

@@ -50,7 +50,7 @@ public class Animal extends Obstacles // lvl 2
         }
         else
         {
-            if ((constant) * (p.getHealth() + p.getFood()) >= 80)
+            if ((constant) * (p.getHealth() + p.getFood()) >= 90)
             {
                 survive = true;
             }

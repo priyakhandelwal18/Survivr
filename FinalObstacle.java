@@ -23,7 +23,7 @@ public class FinalObstacle extends Obstacles
     // for the final obstacle, don't ask for a choice, just call the method with choice = true for dummy variable
     public boolean succeedOrFail(Player p, boolean choice)
     {
-        double constant = generateConstant();
+        double constant = Math.random();
         if(constant*p.getHealth() + constant*p.getFood() + constant*p.getWater() >= 150)
             return true;
         healthDecrement(p);

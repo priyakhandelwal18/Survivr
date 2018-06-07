@@ -36,7 +36,7 @@ public class Mudslide extends Obstacles
      */
     public boolean succeedOrFail(Player p, boolean choice)
     {
-        double constant = generateConstant();
+        double constant = Math.random();
         boolean survive;
         if(choice)
         {
@@ -50,7 +50,7 @@ public class Mudslide extends Obstacles
         }
         else
         {
-            if ((constant) * (p.getHealth() + p.getMetal()) >= 60)
+            if ((constant) * (p.getHealth() + p.getMetal()) >= 70)
             {
                 survive = true;
             }

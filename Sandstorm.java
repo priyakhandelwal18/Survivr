@@ -36,7 +36,7 @@ public class Sandstorm extends Obstacles // lvl 4
    */
     public boolean succeedOrFail(Player p, boolean choice)
     {
-        double constant = generateConstant();
+        double constant = Math.random();
         boolean survive;
         if(choice)
         {
@@ -50,7 +50,7 @@ public class Sandstorm extends Obstacles // lvl 4
         }
         else
         {
-            if ((constant) * (p.getHealth() + p.getArmor()) >= 125)
+            if ((constant) * (p.getHealth() + p.getArmor()) >= 135)
             {
                 survive = true;
             }
