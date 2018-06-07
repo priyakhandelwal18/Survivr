@@ -24,11 +24,14 @@ public class TimTheEnchanter
     {
         Obstacles obstacle;
         String returnString = null;
+        // checks if player's location has an obstacle
         if(p.isAtObstacle())
         {
+            // first part of message for user
             obstacle = (Obstacles)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
             returnString ="Oh no! You've run into a " + obstacle.toString() + "! "
             + "You can fight this with " + obstacle.weapon();
+            //second part of message for user if not finalObstacle
             if(!(obstacle instanceof FinalObstacle))
             {
                  returnString += ", if you have some to spare..."; 
@@ -50,11 +53,11 @@ public class TimTheEnchanter
         Obstacles obstacle = (Obstacles)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
         if(obstacle.succeedOrFail(p, choice))
         {
-            return "Good work! You succeeded against the obstacle!";
+            return "Good work! You succeeded against the obstacle!"; // player succeeded
         }
         else
         {
-            return "Ouch... you failed the obstacle"; 
+            return "Ouch... you failed the obstacle"; // player failed
         }
     }
 
@@ -69,10 +72,12 @@ public class TimTheEnchanter
     public String runIntoSupply(Player p)
     {
         Supplies supply;
+        // checks if player's location has a supply
         if(p.isAtSupply())
         {
             supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
             System.out.println("supply: " + supply);
+            // message for user if they found a supply
             return "Yay! You've just found some " + supply.toString() + "!"; 
         }
         return null;
@@ -89,7 +94,8 @@ public class TimTheEnchanter
     public int collectSupply(Player p)
     {
         Supplies supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
-        int amount = supply.getAmount();
+        int amount = supply.getAmount(); // stores the amount of supply at the location
+        // determines which supply it is and increments in player's stash
         if(supply instanceof Metal)
         {
             p.addMetal(amount); 
@@ -109,7 +115,7 @@ public class TimTheEnchanter
         {
             p.addWater(amount); 
         }
-        System.out.println("supply: " + amount);
+        // clears supply so that user cannot collect it again
         p.playerBiome(p.getLocation()).clearMaterial(p.convertLoc(p.getLocation()));
         return amount;
     }
@@ -126,7 +132,7 @@ public class TimTheEnchanter
     public String randomGift(Player player)
     {
         double random = Math.random();
-        
+        // generates a random number to determine whether user gets random gift and if so, what level of "generosity" of the gift
         if(random >= 0.992)
         {
             if(random >= 0.994)
@@ -136,35 +142,30 @@ public class TimTheEnchanter
                     if(player.getHealth() < 50)
                     {
                         player.addWater(45); 
-                        System.out.println("You've been working hard... here's 45 more water!");
                         return "You've been working hard... here's 45 more water!";
                     }
 
                     else
                     {
                         player.addFood(100);
-                        System.out.println("You look hungry... here's 100 more food!");
                         return "You look hungry... here's 100 more food!";
                     }
                 }
                 if(player.getHealth() < 50)
                 {
                     player.addWater(25); 
-                    System.out.println("You've been working hard... here's 25 more water!");
                     return "You've been working hard... here's 25 more water!";
                 }
 
                 else
                 {
                     player.addFood(80);
-                    System.out.println("You look hungry... here's 80 more food!");
                     return "You look hungry... here's 80 more food!";
                 }
             }
             if(player.getHealth() < 50)
             {
                 player.addWater(10); 
-                System.out.println("You've been working hard... here's 10 more water!");
                 return "You've been working hard... here's 10 more water!";
             }
 
@@ -188,14 +189,17 @@ public class TimTheEnchanter
    */
     public void drink(Player p)
     {
+        // if not enough water available throw exception
         if (p.getWater() < 10)
         {
             throw new IllegalArgumentException("Not enough water to drink");
         }
+        // if health is already 100 throw exception
         else
         {
             if (p.getHealth() > 99)
                 throw new IllegalArgumentException("You already have enough health");
+            // let the user drink water by decrementing water count and incrementing health
             else
             {
                 p.subtractWater(10);
@@ -214,15 +218,18 @@ public class TimTheEnchanter
    */
     public void eat(Player p)
     {
+        // if not enough food available throw exception
         if (p.getFood() < 10)
         {
             throw new IllegalArgumentException("Not enough food to eat");
         }
+        // if health is already 99 or 100 throw exception
         else
         {
             if (p.getHealth() > 98)
                 throw new IllegalArgumentException("You already have enough health");
-            else
+            // let the user eat food by decrementing water count and incrementing health
+                else
             {
                 p.subtractFood(10);
                 p.addHealth(2);
@@ -249,6 +256,7 @@ public class TimTheEnchanter
    */
     public String die(Player p)
     {
+        // if player's health is less than 0, player is dead and return empty string
         if(p.getHealth() <= 0)
         {
             return "";
@@ -265,6 +273,7 @@ public class TimTheEnchanter
    */
     public String win(Player p)
     {
+        // if player has run into a final obstacle, return empty string
         if(p.getLocation().getY() == 2)
         {
             Obstacles obstacle = (FinalObstacle)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY()); 
