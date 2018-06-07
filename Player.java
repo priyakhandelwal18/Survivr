@@ -2,10 +2,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.awt.Point;
 /**
- * Write a description of class Player here.
+ * Class Player represents the player, his/her supplies, his/her health, 
+ * a
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Satvik Nagpal and Priya Khandelwal)
+ * @version (06/06/2018)
  */
 public class Player
 {
@@ -39,8 +40,8 @@ public class Player
     {
         health = 100; //starts off with 100 health
         //starts off with 0 supplies and built supplies
-        metal = 500;
-        wood = 500;
+        metal = 0;
+        wood = 0;
         food = 0;
         water = 0;
         bowAndArrow = 0;
@@ -54,7 +55,8 @@ public class Player
         int x = (int)(Math.random()*201);
         int y = (int)(Math.random()*50 + 150);
         pos = new Point(x, y);
-        System.out.println("Initial x: " + x + ", Initial y: " + y + ", Biome: " + playerBiomeString(getLocation()));
+        //debugging
+        //System.out.println("Initial x: " + x + ", Initial y: " + y + ", Biome: " + playerBiomeString(getLocation()));
         //old pos is set to pos
         oldPos = pos;
         //instantiate new biomes with obstacles and supplies
@@ -66,7 +68,7 @@ public class Player
         desert.buildObstacles();
         grassland.buildSupplies();
         rainforest.buildSupplies();
-        System.out.println("In setName"); //debugging
+        //System.out.println("In setName"); //debugging
         //System.out.println(4/0);
     }
 
@@ -115,8 +117,9 @@ public class Player
         if(pos != null)
             setOldPosition(pos); //sets old location of player
         pos.setLocation(x, y); //sets current location of player
-        System.out.println("After the move, the actual pos: " + pos + " and biome: " + playerBiomeString(getLocation()));
-        System.out.println("x: " + pos.getX() + ", y: " + pos.getY());
+        //if debugging
+        //System.out.println("After the move, the actual pos: " + pos + " and biome: " + playerBiomeString(getLocation()));
+        //System.out.println("x: " + pos.getX() + ", y: " + pos.getY());
     }
     
     /**
@@ -166,7 +169,8 @@ public class Player
                 supply = grassland.isAtSupply((int)(convertLoc(pos).getX()), (int)(convertLoc(pos).getY()));
         if(supply != false)
         {
-           System.out.println("supply: " + playerBiome(getLocation()).getMaterial((int)convertLoc(getLocation()).getX(), (int)convertLoc(getLocation()).getY()).toString());
+           //debugging
+           //System.out.println("supply: " + playerBiome(getLocation()).getMaterial((int)convertLoc(getLocation()).getX(), (int)convertLoc(getLocation()).getY()).toString());
         }
         return supply;
     }
@@ -596,4 +600,3 @@ public class Player
         rope -= amount;
     }
 }
-

@@ -2,7 +2,7 @@
  * TimTheEnchanter- communicates information between the other classes and gameRunner.
  *
  * @author Priya K
- * @version 050618
+ * @version 060618
  */
 public class TimTheEnchanter
 {
@@ -76,7 +76,7 @@ public class TimTheEnchanter
         if(p.isAtSupply())
         {
             supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
-            System.out.println("supply: " + supply);
+            // System.out.println("supply: " + supply); // debugging
             // message for user if they found a supply
             return "Yay! You've just found some " + supply.toString() + "!"; 
         }
@@ -172,7 +172,8 @@ public class TimTheEnchanter
             else
             {
                 player.addFood(50);
-                System.out.println("You look hungry... here's 50 more food!");
+                //debugging
+                //System.out.println("You look hungry... here's 50 more food!");
                 return "You look hungry... here's 50 more food!";
             }
         }
