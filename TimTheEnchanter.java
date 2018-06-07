@@ -6,40 +6,19 @@
  */
 public class TimTheEnchanter
 {
-    /**
-     * Constructor for objects of class TimTheEnchanter- (does not do anything)
+   /**
+     * Constructor for objects of class TimTheEnchanter- (does not instanciate anything)
      */
     public TimTheEnchanter()
     {   
     }
-    
-    /**
-   *  Uses an equation based on health and supply to generate a random number
-   *  If this random number is greater than 80, player succeeds
-   *  If this random number is less than 80, player fails
-   *
-   * @param  Player player  
-   * @return true if player succeeds, false if player fails 
-   */
-    public String enteredNewBiome(Player player)
-    {
-        if(!player.playerBiome(player.getLocation()).equals(player.playerBiome(player.getOldLocation())))
-        {
-            System.out.println(("You've entered the " + player.playerBiome(player.getLocation()).toString() + " terrain!"));
-            return ("You've entered the " + player.playerBiome(player.getLocation()).toString() + " terrain!");
-        }
-        player.playerBiome(player.getOldLocation()).clearObstacles();
-        player.playerBiome(player.getOldLocation()).buildObstacles();
-        return null;
-    }
 
    /**
-   *  Uses an equation based on health and supply to generate a random number
-   *  If this random number is greater than 80, player succeeds
-   *  If this random number is less than 80, player fails
+   *  Checks if player is at obstacle. If player is at obstacle, returns a message telling what obstacle and what weapons
+   *  are available so that GameRunner can print this information for user. If not, returns null. 
    *
    * @param  Player player  
-   * @return true if player succeeds, false if player fails 
+   * @return String returnString(actual message if run into obstacle, else return null)
    */
     public String runIntoObstacle(Player p)
     {
@@ -59,12 +38,12 @@ public class TimTheEnchanter
     }
 
    /**
-   *  Uses an equation based on health and supply to generate a random number
-   *  If this random number is greater than 80, player succeeds
-   *  If this random number is less than 80, player fails
+   *  Determines what the obstacle is and calls the succeedOrFail method for that particular obstacle. If method returns true,
+   *  a "succeed" message is returned for GameRunner to print, and if method returns false, a "fail" message is returned. 
    *
-   * @param  Player player  
-   * @return true if player succeeds, false if player fails 
+   * @param  Player player, boolean choice  
+   * @return "Good work! You succeeded against the obstacle!" if player succeeded
+   *         "Ouch... you failed the obstacle" if player failed
    */
     public String fightObstacle(Player p, boolean choice)
     {
@@ -80,12 +59,12 @@ public class TimTheEnchanter
     }
 
    /**
-   *  Uses an equation based on health and supply to generate a random number
-   *  If this random number is greater than 80, player succeeds
-   *  If this random number is less than 80, player fails
+   *  Checks if player is at supply. If player is at supply, returns a message telling what supply they got
+   *  so that GameRunner can print this information for user. If not, returns null.
    *
    * @param  Player player  
-   * @return true if player succeeds, false if player fails 
+   * @return supply name and message if supply found
+   *         otherwise returns null
    */
     public String runIntoSupply(Player p)
     {
@@ -100,12 +79,12 @@ public class TimTheEnchanter
     }
 
    /**
-   *  Uses an equation based on health and supply to generate a random number
-   *  If this random number is greater than 80, player succeeds
-   *  If this random number is less than 80, player fails
+   *  Determines what the supply is that the user ran into and returns the amount of supply present so that GameRunner
+   *  can print for user. It also adds the supply found to the Player's stash and clears the supply from the board so that 
+   *  it cannot be used again
    *
    * @param  Player player  
-   * @return true if player succeeds, false if player fails 
+   * @return amount 
    */
     public int collectSupply(Player p)
     {
@@ -136,12 +115,13 @@ public class TimTheEnchanter
     }
 
    /**
-   *  Uses an equation based on health and supply to generate a random number
-   *  If this random number is greater than 80, player succeeds
-   *  If this random number is less than 80, player fails
-   *
-   * @param  Player player  
-   * @return true if player succeeds, false if player fails 
+   *  Generates a random number; if the number is greater than .992, the user gets a tiny random gift;
+   *  if the number is greater than .994, the user gets a medium random gift;
+   *  if the number is greater than .996, the user gets a large random gift;
+   *  
+   *  @param  Player player  
+   *  @return String with description of gift if user is granted a gift
+   *          Otherwise returns a null string
    */
     public String randomGift(Player player)
     {
@@ -199,12 +179,12 @@ public class TimTheEnchanter
     }
    
    /**
-   *  Uses an equation based on health and supply to generate a random number
-   *  If this random number is greater than 80, player succeeds
-   *  If this random number is less than 80, player fails
+   *  Checks if there is at least 10 water and less than 100 health if the user wants to drink water
+   *  and increments the user's health by 1 for every 10 water they drink; 
+   *  otherwise throw an IllegalArgumentException describing why they can't drink the water
    *
    * @param  Player player  
-   * @return true if player succeeds, false if player fails 
+   * @return none 
    */
     public void drink(Player p)
     {
@@ -214,7 +194,7 @@ public class TimTheEnchanter
         }
         else
         {
-            if (p.getHealth() == 100)
+            if (p.getHealth() > 99)
                 throw new IllegalArgumentException("You already have enough health");
             else
             {
@@ -225,12 +205,12 @@ public class TimTheEnchanter
     }
    
    /**
-   *  Uses an equation based on health and supply to generate a random number
-   *  If this random number is greater than 80, player succeeds
-   *  If this random number is less than 80, player fails
+   *  Checks if there is at least 10 food and less than 99 health if the user wants to eat food
+   *  and increments the user's health by 2 for every 10 food they eat; 
+   *  otherwise throw an IllegalArgumentException describing why they can't eat the food
    *
    * @param  Player player  
-   * @return true if player succeeds, false if player fails 
+   * @return none 
    */
     public void eat(Player p)
     {
@@ -240,7 +220,7 @@ public class TimTheEnchanter
         }
         else
         {
-            if (p.getHealth() == 100)
+            if (p.getHealth() > 98)
                 throw new IllegalArgumentException("You already have enough health");
             else
             {
@@ -251,12 +231,10 @@ public class TimTheEnchanter
     }
 
    /**
-   *  Uses an equation based on health and supply to generate a random number
-   *  If this random number is greater than 80, player succeeds
-   *  If this random number is less than 80, player fails
+   *  Returns the material at Player's current location, if any
    *
    * @param  Player player  
-   * @return true if player succeeds, false if player fails 
+   * @return Materials 
    */
     public Materials returnMaterial(Player p)
     {
@@ -264,12 +242,10 @@ public class TimTheEnchanter
     }
 
    /**
-   *  Uses an equation based on health and supply to generate a random number
-   *  If this random number is greater than 80, player succeeds
-   *  If this random number is less than 80, player fails
+   *  If health is less than 0, method returns an empty string so that GameRunner knows the player is dead. Else, returns null
    *
    * @param  Player player  
-   * @return true if player succeeds, false if player fails 
+   * @return String 
    */
     public String die(Player p)
     {
@@ -280,6 +256,13 @@ public class TimTheEnchanter
         return null; 
     }
 
+   /**
+   *  If player has reached final obstacle, method calls succeedOrFail and returns an empty string for GameRunner to make decision. Else,
+   *  returns null because player has not reached end of game yet.
+   *
+   * @param  Player player  
+   * @return String 
+   */
     public String win(Player p)
     {
         if(p.getLocation().getY() == 2)
